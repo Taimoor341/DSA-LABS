@@ -3,47 +3,46 @@
 #include<fstream>
 using namespace std;
 
-class Employee {
-public:
-	virtual double calculateSalary() = 0;
+class Shape {
 
+public:
+	virtual double area() = 0;
 };
 
-class FullTimeEmployee :Employee {
+class Circle : public Shape {
 private:
-	double salary;
+	double radius;
 public:
-	FullTimeEmployee(double s) {
-		salary = s;
+	Circle(double r) {
+		radius = r;
 	}
-	double calculateSalary() {
-		return salary;
+	double area()
+	{
+		return 3.14 * radius * radius;
 	}
 };
 
-class PartTimeEmployee : Employee {
+class Rectangle : public Shape {
 private:
-	double hours;
-	double hourlyRate;
+	double length;
+	double width;
 
 public:
-	PartTimeEmployee(double h, double r) {
-		hours = h;
-		hourlyRate = r;
+	Rectangle(double l, double w) {
+		length = l;
+		width = w;
+	}
+	double area() {
+		return length * width;
 	}
 
-	double calculateSalary() {
-		return hours * hourlyRate;
-	}
 };
+
 int main()
 {
-	FullTimeEmployee f1(90000);
-	PartTimeEmployee p1(40,230);
+	Circle c1(5);
+	Rectangle r1(10, 4);
 
-	cout << "Full Time Employee Salary: "
-		<< f1.calculateSalary() << endl;
-
-	cout << "Part Time Employe Salary: "
-		<< p1.calculateSalary() << endl;
+	cout << "Radius of the circle is: " << c1.area() << endl;
+	cout << "Area of the Rectangle is: " << r1.area() << endl;
 }
